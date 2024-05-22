@@ -135,5 +135,95 @@ namespace ClassLibrary
             //always return true
             return true;
         }
+
+        public string Valid(string name, string email, string gender, string address, string dateOfBirth)
+        {
+
+            //create a string variable to store the error
+            String Error = "";
+
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            try
+            {
+                //copy the dateOfBirth value to the DateTemp Variable
+                DateTemp = Convert.ToDateTime(dateOfBirth);
+                //check to see if the data is less than today's date
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the data is greater than today,s date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch 
+            {
+                Error = Error + "The date was not valid date : ";
+            }
+
+            //if the Name is Blank 
+            if (name.Length == 0)
+            {
+                //record the error
+                Error = Error + "The name may not be blank : ";
+            }
+            //if the Name is greater than 50 characters
+            if (name.Length > 50)
+            {
+                //record the error
+                Error = Error + "The name must be less than 50 characters : ";
+
+            }
+
+
+
+            //is the email blank
+            if (email.Length == 0)
+            {
+                //record the error
+                Error = Error + "The email may not be blank : ";
+            }
+            //if the email is too long
+            if (email.Length > 50)
+            {
+                //record the error
+                Error = Error + "The email must be less than 50 characters : ";
+            }
+
+            //is the gender Blank
+            if (gender.Length == 0)
+            {
+                //record the error
+                Error = Error + "The gender may not be blank : ";
+            }
+            //if the gender is too long
+            if (gender.Length > 50)
+            {
+                //record the error
+                Error = Error + "The email must be less than 50 characters : ";
+            }
+
+
+
+            //is the address Blank
+            if (address.Length == 0)
+            {
+                //record the error
+                Error = Error + "The address may not be blank : ";
+            }
+            //if the address is too long
+            if (address.Length > 50)
+            {
+                //record the error
+                Error = Error + "The address must be less than 50 characters : ";
+            }
+
+
+            //return any error messages
+            return Error;
+        }
     }
 }
