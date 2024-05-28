@@ -21,7 +21,7 @@
         <asp:Label ID="lblDeliveredStatus" runat="server" style="z-index: 1; left: 10px; top: 130px; position: absolute" Text="Delivered Status"></asp:Label>
         <p>
             &nbsp;</p>
-        <asp:Label ID="lblTotalAmount" runat="server" style="z-index: 1; left: 11px; top: 162px; position: absolute" Text="Total Amount"></asp:Label>
+        <asp:Label ID="lblTotalAmount" runat="server" style="z-index: 1; left: 11px; top: 162px; position: absolute; bottom: 547px;" Text="Total Amount"></asp:Label>
         <asp:Label ID="lblShippingAddress" runat="server" style="z-index: 1; left: 12px; top: 194px; position: absolute" Text="Shipping Address"></asp:Label>
         <p>
             &nbsp;</p>

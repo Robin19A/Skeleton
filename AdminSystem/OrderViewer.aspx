@@ -7,7 +7,6 @@
     <title></title>
 </head>
 <body>
-    This is the Order Viwer Page
     <form id="form1" runat="server">
         <div>
         </div>
