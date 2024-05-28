@@ -122,18 +122,36 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int staffId)
+        public bool Find(int StaffId)
         {
-            //set the privte data members to the test data value
-            mStaffId = 21;
-            mName = "Amanullah Robin";
-            mEmail = "arobin@gmail.com";
-            mDateOfBirth = Convert.ToDateTime("23/12/2022");
-            mGender = "Male";
-            mAddress = "57A London Road";
-            mActive = true;
-            //always return true
-            return true;
+            //create an instance of the data data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address id to search for
+            DB.AddParameter("@StaffId", StaffId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByStaffId");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+
+                //copy the data from the database to the private data members
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mGender = Convert.ToString(DB.DataTable.Rows[0]["Gender"]);
+                mAddress = Convert.ToString(DB.DataTable.Rows[0]["Address"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating there is a problem
+                return false;
+            }
+           
         }
 
         public string Valid(string name, string email, string gender, string address, string dateOfBirth)
