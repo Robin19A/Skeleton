@@ -22,6 +22,7 @@
             <asp:TextBox ID="txtEmail" runat="server" style="z-index: 1; left: 111px; top: 126px; position: absolute" width="128px"></asp:TextBox>
             <asp:Label ID="lblEmail" runat="server" style="z-index: 1; left: 12px; top: 129px; position: absolute" Text="Email" width="41px"></asp:Label>
         </p>
+        <asp:Button ID="btnFind" runat="server" style="z-index: 1; left: 448px; top: 25px; position: absolute" Text="Find" OnClick="btnFind_Click" />
         <p>
             &nbsp;</p>
         <asp:Label ID="lblDateOfBirth" runat="server" style="z-index: 1; left: 12px; top: 191px; position: absolute" Text="DateOfBirth" width="41px"></asp:Label>

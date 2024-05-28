@@ -11,10 +11,10 @@ namespace Testing1
     {
         //good test data 
         //create some test data to pass the method
-        string Name = "Amanullah Robin";
-        string Email = "arobin@gmail.com";
+        string Name = "Robin";
+        string Email = "robinyo@gmail.com";
         string Gender = "Male";
-        string Address = "57A London Road";
+        string Address = "LE20PE";
         string DateOfBirth = DateTime.Now.ToShortDateString();
 
         [TestMethod]
@@ -124,15 +124,10 @@ namespace Testing1
         [TestMethod]
         public void FindMethodOK()
         {
-            //create an instance of the class we want to create
             clsStaff AnStaff = new clsStaff();
-            //create a Boolean variable to store the results of the validation
             Boolean Found = false;
-            //create some test data to use with the method
-            Int32 StaffId = 21;
-            //invoke the method
+            Int32 StaffId = 1;
             Found = AnStaff.Find(StaffId);
-            //test to see if the result is true
             Assert.IsTrue(Found);
         }
 
@@ -146,11 +141,11 @@ namespace Testing1
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 21;
+            Int32 StaffId = 1;
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the address id property
-            if (AnStaff.StaffId != 21)
+            if (AnStaff.StaffId != 1)
             {
                 OK = false;
             }
@@ -168,11 +163,11 @@ namespace Testing1
             //create Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 21;
+            Int32 StaffId = 1;
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the date added property
-            if (AnStaff.DateOfBirth != Convert.ToDateTime("23/12/2022"))
+            if (AnStaff.DateOfBirth != Convert.ToDateTime("23/10/2001"))
             {
                 OK = false;
             }
@@ -190,7 +185,7 @@ namespace Testing1
             //create Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 21;
+            Int32 StaffId = 1;
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the active property
@@ -212,11 +207,11 @@ namespace Testing1
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 21;
+            Int32 StaffId = 1;
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the Staff Name
-            if (AnStaff.Name != "Amanullah Robin")
+            if (AnStaff.Name != "Robin")
             {
                 OK = false;
             }
@@ -224,7 +219,7 @@ namespace Testing1
             Assert.IsTrue(OK);
 
         }
-
+    
         [TestMethod]
         public void TestEmailFound()
         {
@@ -235,17 +230,16 @@ namespace Testing1
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 21;
+            Int32 StaffId = 1;
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the Staff Email
-            if (AnStaff.Email != "arobin@gmail.com")
+            if (AnStaff.Email != "robinyo@gmail.com")
             {
                 OK = false;
             }
             //test to see if the result is true  
             Assert.IsTrue(OK);
-
         }
 
         [TestMethod]
@@ -258,19 +252,18 @@ namespace Testing1
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 4;
+            Int32 StaffId = 1;
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the Address Id
-            if (AnStaff.Address != "57A London Road")
+            if (AnStaff.Address != "LE20PE")
             {
                 OK = false;
             }
             //test to see if the result is true  
             Assert.IsTrue(OK);
-
         }
-
+        
         [TestMethod]
         public void TestGenderFound()
         {
@@ -281,7 +274,7 @@ namespace Testing1
             //create a Boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 21;
+            Int32 StaffId = 1;
             //invoke the method
             Found = AnStaff.Find(StaffId);
             //check the Staff Gender
@@ -291,9 +284,8 @@ namespace Testing1
             }
             //test to see if the result is true  
             Assert.IsTrue(OK);
-
         }
-
+        
         [TestMethod]
 
         public void ValidMethodOK()

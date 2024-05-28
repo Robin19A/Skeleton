@@ -63,4 +63,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
             lblError.Text = Error;
         }
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the address class
+        clsStaff AnStaff = new clsStaff();
+        //create a variable to store the primary key
+        Int32 StaffId;
+        //create a variable to store the result of the find operation
+        Boolean Found = false; 
+        //get the primary key entered by the user
+        StaffId = Convert.ToInt32(txtStaffId.Text);
+        //find the record
+        Found = AnStaff.Find(StaffId);
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtName.Text = AnStaff.Name;
+            txtEmail.Text = AnStaff.Email;
+            txtDateOfBirth.Text = AnStaff.DateOfBirth.ToString();
+            txtGender.Text = AnStaff.Gender;
+            txtAddress.Text = AnStaff.Address;
+            chkActive.Checked = AnStaff.Active;
+        }
+
+    }
 }
