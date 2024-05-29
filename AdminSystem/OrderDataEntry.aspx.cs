@@ -10,14 +10,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //create a new instance of clsOrder
-        clsOrder AnOrder = new clsOrder();
-        //get the data from the session object
-        AnOrder = (clsOrder)Session["AnOrder"];
-        //display the house number for this entry
-        Response.Write(AnOrder.ShippingAddress);
-    }
 
+    }
     protected void txtOrderId_TextChanged(object sender, EventArgs e)
     {
 
@@ -25,6 +19,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
+
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //capture the Order Id
@@ -42,9 +37,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the Staff Id
         AnOrder.StaffId = Convert.ToInt16(txtStaffID.Text);
         //capture Complete check box
+        AnOrder.Active  = chkComplete.Checked;
         //store the address in the session object
         Session["AnOrder"] = AnOrder;
         //navigate to the view page
         Response.Redirect("OrderViewer.aspx");
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
     }
 }
