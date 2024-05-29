@@ -9,6 +9,7 @@ namespace ClassLibrary
         public DateTime DateAdded { get; set; }
         public decimal UnitPrice { get; set; }
         public int SupplierID { get; set; }
-        public bool Availability { get; set; }
+        public bool Available { get; set; }
+        public int ProductID { get; set; }
     }
 }
