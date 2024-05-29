@@ -7,23 +7,20 @@ namespace ClassLibrary
         //private data member for the address id property
         private Int32 mOrderid;
         private short orderId;
+        private int mAddressId;
 
-        //addressId public property
-        public Int32 OrderId
+        public short GetOrderId()
         {
-            get
-            {
-                //this line of code sends data out of the property
-                return mOrderid;
-            }
-            set
-            {
-                //this line of code allows data into the property
-                mOrderid = value;
-            }
+            return orderId;
         }
+
+        public void SetOrderId(short value)
+        {
+            orderId = value;
+        }
+
         public bool Active { get; set; }
-        public short OrderId { get => orderId; set => orderId = value; }
+        public short OrderId { get => GetOrderId(); set => SetOrderId(value); }
         public short CustomerId { get; set; }
         public DateTime OrderDate { get; set; }
         public string DeliveredStatus { get; set; }
