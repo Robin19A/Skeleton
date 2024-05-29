@@ -22,6 +22,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        
 
     }
 
@@ -35,7 +36,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsProduct AnProduct = new clsProduct();
         AnProduct.Name = txtName.Text;
         Session["AnProduct"] = AnProduct;
-         AnProduct.ProductID = int.Parse(txtProductID.Text);
+        AnProduct.ProductID = int.Parse(txtProductID.Text);
 
           AnProduct.Description = txtDescription.Text;
           AnProduct.DateAdded = Convert.ToDateTime(DateTime.Now);
