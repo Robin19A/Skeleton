@@ -124,19 +124,38 @@ namespace ClassLibrary
                 mActive = value;
             }
         }
-        public bool Find(int supplierId)
+        public bool Find(int SupplierId)
         {
-            //set the private data members to the test data value
-            mSupplierId = 21;
-            mSupplierName = "Sunny Shades";
-            mAddress = "19 Kingston Road";
-            mPhone = "04303487433";
-            mDateAdded = Convert.ToDateTime("23/12/2022");
-            mEmail = "Sunnyshades@gmail.com";
-            mActive = true;
-            //always return true
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the supplier id to search for 
+            DB.AddParameter("@SupplierId", SupplierId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblSupplier_FilterBySupplierId");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members 
+                mSupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierId"]);
+                mSupplierName = Convert.ToString(DB.DataTable.Rows[0]["SupplierName"]);
+                mAddress = Convert.ToString(DB.DataTable.Rows[0]["Address"]);
+                mPhone = Convert.ToString(DB.DataTable.Rows[0]["Phone"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                //return that everything worked ok
+                return true;
+
+            }
+            //if no record was found
+            else
+            {
+
+
+                //return false indicating there is a problem 
+                return false;
+            }
         }
     }
-    
 }
+    
