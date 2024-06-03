@@ -35,13 +35,13 @@ namespace ClassLibrary
         }
 
         public bool Active { get; set; }
-        public short OrderId { get => GetOrderId(); set => SetOrderId(value); }
-        public string CustomerId { get; set; }
+        public Int16 OrderId { get => GetOrderId(); set => SetOrderId(value); }
+        public Int16 CustomerId { get; set; }
         public string DeliveredStatus { get; set; }
         public decimal TotalAmount { get; set; }
         public string ShippingAddress { get; set; }
         public DateTime OrderDate { get; set; }
-        public string StaffId { get; set; }
+        public Int16 StaffId { get; set; }
 
         public bool Find(int orderId)
         {
