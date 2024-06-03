@@ -43,15 +43,15 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void OrderDateOK()
+        public void OrderDateOK(string testData)
         {
-            //create an instance of the class we want to create
+            //create an instance of the class we want to create 
             clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
+            //create some test data to assign to the property 
             DateTime TestData = DateTime.Now.Date;
-            //assign the data to the property
+            //assign the data to the property 
             AnOrder.OrderDate = TestData;
-            //test to see the two values are the same
+            //test to see that the two values are the same 
             Assert.AreEqual(AnOrder.OrderDate, TestData);
         }
 
@@ -115,7 +115,7 @@ namespace Testing4
             //create a Boolean cariable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int16 OrderId = 21;
+            Int16 OrderId = 1;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //test to see if the result is true
@@ -123,7 +123,7 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void TestOrderIdFoundOK()
+        public void TestOrderIdFound()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
@@ -132,7 +132,7 @@ namespace Testing4
             //create a Boolean variable to record if the data is Ok (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int16 OrderId = 21;
+            Int16 OrderId = 1;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //check the Order Id
