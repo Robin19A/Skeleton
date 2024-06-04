@@ -4,7 +4,7 @@ namespace ClassLibrary
     public class clsOrder
     {
         //private data member for the Order id property
-        private Int16 mOrderId;
+        private Int32 mOrderId;
         //OrderId public property
         public int OrderId
         {
@@ -21,7 +21,7 @@ namespace ClassLibrary
         }
 
         //private data member for the house no property
-        private Int16 mCustomerId;
+        private Int32 mCustomerId;
         //house no public property
         public int CustomerId
         {
@@ -106,7 +106,7 @@ namespace ClassLibrary
         }
 
         //private data member for the house no property
-        private Int16 mStaffId;
+        private Int32 mStaffId;
         //house no public property
         public int StaffId
         {
@@ -137,20 +137,37 @@ namespace ClassLibrary
                 mActive = value;
             }
         }
+
         /****** FIND METHOD ******/
         public bool Find(int OrderId)
         {
-            //set the private data members to the test data value
-            mOrderId = 1;
-            mCustomerId = 1000;
-            mOrderDate = Convert.ToDateTime("10/05/2024");
-            mDeliveredStatus = "Delivered";
-            mTotalAmount = 15;
-            mShippingAddress = "Gateway House, Leicester, LE1 9BH";
-            mStaffId = 1001;
-            mActive = true;
-            //always return true
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address id to search for
+            DB.AddParameter("@OrderId", OrderId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_FilterByOrderId");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mOrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);
+                mDeliveredStatus = Convert.ToString(DB.DataTable.Rows[0]["DeliveredStatus"]);
+                mTotalAmount = Convert.ToDecimal(DB.DataTable.Rows[0]["TotalAmount"]);
+                mShippingAddress = Convert.ToString(DB.DataTable.Rows[0]["ShippingAddress"]);
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was Found
+            else
+            {
+
+                //return false indicating there is a problem
+                return false;
+            }
         }
     }
 }
