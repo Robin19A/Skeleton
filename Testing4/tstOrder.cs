@@ -24,7 +24,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            Int32 TestData = 5;
+            Int32 TestData = 4;
             //assign the data to the property
             AnOrder.OrderId = TestData;
             //test to see that the two values are the same
@@ -37,7 +37,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            Int32 TestData = 1004;
+            Int32 TestData = 4000;
             //assign the data to the property
             AnOrder.CustomerId = TestData;
             //test to see that the two values are the same
@@ -58,16 +58,16 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void DeliveredStatusOK()
+        public void DeliveryStatusOK()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            string TestData = "Delivered";
+            Boolean TestData = true;
             //assign the data to the property
-            AnOrder.DeliveredStatus = TestData;
+            AnOrder.DeliveryStatus = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.DeliveredStatus, TestData);
+            Assert.AreEqual(AnOrder.DeliveryStatus, TestData);
         }
 
         [TestMethod]
@@ -76,7 +76,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            Decimal TestData = 45;
+            Decimal TestData = 30;
             //assign the data to the property
             AnOrder.TotalAmount = TestData;
             //test to see that the two values are the same
@@ -102,7 +102,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();            
             //create some test data to assign to the property
-            Int32 TestData = 1005;
+            Int32 TestData = 1004;
             //assign the data to the property
             AnOrder.StaffId = TestData;
             //test to see that the two values are the same
@@ -118,7 +118,7 @@ namespace Testing4
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 OrderId = 5;
+            Int32 OrderId = 4;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //test to see if the result is true
@@ -136,11 +136,11 @@ namespace Testing4
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderId = 5;
+            Int32 OrderId = 4;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //check the Order id property
-            if (AnOrder.OrderId != 5)
+            if (AnOrder.OrderId != 4)
             {
                 OK = false;
             }
@@ -158,11 +158,11 @@ namespace Testing4
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderId = 5;
+            Int32 OrderId = 4;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //check the house no property
-            if (AnOrder.CustomerId != 1004)
+            if (AnOrder.CustomerId != 4000)
             {
                 OK = false;
             }
@@ -180,7 +180,7 @@ namespace Testing4
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderId = 5;
+            Int32 OrderId = 4;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //check the street property
@@ -193,7 +193,7 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void DeliveredStatusFound()
+        public void DeliveryStatusFound()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
@@ -202,11 +202,11 @@ namespace Testing4
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderId = 5;
+            Int32 OrderId = 4;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //check the town property
-            if (AnOrder.DeliveredStatus != "Delivered")
+            if (AnOrder.DeliveryStatus != true)
             {
                 OK = false;
             }
@@ -224,11 +224,11 @@ namespace Testing4
             //create a boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderId = 5;
+            Int32 OrderId = 4;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //check the post code property
-            if (AnOrder.TotalAmount != 45)
+            if (AnOrder.TotalAmount != 30)
             {
                 OK = false;
             }
@@ -246,7 +246,7 @@ namespace Testing4
             //create a boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderId = 5;
+            Int32 OrderId = 4;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //check the county code property
@@ -268,11 +268,11 @@ namespace Testing4
             //create Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderId = 5;
+            Int32 OrderId = 4;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //check the date added property
-            if (AnOrder.StaffId != 1005)
+            if (AnOrder.StaffId != 1004)
             {
                 OK = false;
             }
