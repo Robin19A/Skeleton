@@ -55,19 +55,19 @@ namespace ClassLibrary
         }
 
         //private data member for the post code property
-        private string mDeliveredStatus;
+        private Boolean mDeliveryStatus;
         //post code public property
-        public string DeliveredStatus
+        public Boolean DeliveryStatus
         {
             get
             {
                 //this line of code sends data out of the property
-                return mDeliveredStatus;
+                return mDeliveryStatus;
             }
             set
             {
                 //this line of code allows data into the property
-                mDeliveredStatus = value;
+                mDeliveryStatus = value;
             }
         }
 
@@ -122,22 +122,6 @@ namespace ClassLibrary
             }
         }
 
-        private Boolean mActive;
-        //active public property
-        public bool Active
-        {
-            get
-            {
-                //this line of code sends data out of the property
-                return mActive;
-            }
-            set
-            {
-                //this line of code allows data into the property
-                mActive = value;
-            }
-        }
-
         /****** FIND METHOD ******/
         public bool Find(int OrderId)
         {
@@ -154,7 +138,7 @@ namespace ClassLibrary
                 mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
                 mOrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);
-                mDeliveredStatus = Convert.ToString(DB.DataTable.Rows[0]["DeliveredStatus"]);
+                mDeliveryStatus = Convert.ToBoolean(DB.DataTable.Rows[0]["DeliveryStatus"]);
                 mTotalAmount = Convert.ToDecimal(DB.DataTable.Rows[0]["TotalAmount"]);
                 mShippingAddress = Convert.ToString(DB.DataTable.Rows[0]["ShippingAddress"]);
                 mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
