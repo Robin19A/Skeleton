@@ -8,14 +8,26 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 StaffId;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of the address to be processed
+        StaffId = Convert.ToInt32(Session["StaffId"]);
+        if (IsPostBack == false)
+        {
+            //if this is the not a new record
+            if (StaffId != -1)
+            {
+                //dis[play the current data for the record
+                DisplayStaff();
+            }
+        }
     }
+ 
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        
+
         //create a new instance of clsStaff
         clsStaff AnStaff = new clsStaff();
         //capture the Name
@@ -33,9 +45,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //variable to store any error messages
         string Error = "";
         //validate the data
-        Error = AnStaff.Valid(Name, Email, DateOfBirth, Gender, Address);
+        Error = AnStaff.Valid(Name, Email, Gender, Address, DateOfBirth);
         if (Error == "")
         {
+            //capture the staff id
+            AnStaff.StaffId = StaffId;
             //capture the name
             AnStaff.Name = Name;
             //capture the Email
@@ -46,18 +60,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnStaff.Gender = Gender;
             //capture the Address
             AnStaff.Address = Address;
-            
-            
-            
-            //Store the staff in the session object
-            Session["AnStaff"] = AnStaff;
-            //navigte to the view page
-            Response.Redirect("StaffViewer.aspx");
+            //capture active
+            AnStaff.Active = chkActive.Checked;
+            //create a new instance of the address collection
+            clsStaffCollection StaffList = new clsStaffCollection();
 
-            
-            
+            //if this is a new record i. e. StaffId = -1 then add the data
+            if (StaffId == -1)
+            {
+                //set the ThisStaff Property
+                StaffList.ThisStaff = AnStaff;
+                //add the new record
+                StaffList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                StaffList.ThisStaff.Find(StaffId);
+                //set the ThisStaff property
+                StaffList.ThisStaff = AnStaff;
+                //update the record
+                StaffList.Update();
+
+            }
+            //redirect back to the list page
+            Response.Redirect("StaffList.aspx");
         }
-        else 
+        else
         {
             //display the error message
             lblError.Text = Error;
@@ -86,6 +116,23 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtAddress.Text = AnStaff.Address;
             chkActive.Checked = AnStaff.Active;
         }
+
+    }
+    void DisplayStaff()
+    {
+
+        //create an instance of the Staff book
+        clsStaffCollection StaffBook = new clsStaffCollection();
+        //find the record to update
+        StaffBook.ThisStaff.Find(StaffId);
+        //display the data for the record
+        txtStaffId.Text = StaffBook.ThisStaff.StaffId.ToString();
+        txtName.Text = StaffBook.ThisStaff.Name.ToString();
+        txtEmail.Text = StaffBook.ThisStaff.Email.ToString();
+        txtDateOfBirth.Text = StaffBook.ThisStaff.DateOfBirth.ToString();
+        txtGender.Text = StaffBook.ThisStaff.Gender.ToString();
+        txtAddress.Text = StaffBook.ThisStaff.Address.ToString();
+        chkActive.Checked = StaffBook.ThisStaff.Active;
 
     }
 }

@@ -9,7 +9,7 @@
 <body style="height: 20px; width: 409px">
     <form id="form1" runat="server">
         <p>
-            <asp:TextBox ID="txtStaffId" runat="server" style="z-index: 1; left: 111px; top: 48px; position: absolute"></asp:TextBox>
+            <asp:TextBox ID="txtStaffId" runat="server" style="z-index: 1; left: 111px; top: 48px; position: absolute;"></asp:TextBox>
             <asp:Label ID="lblStaffId" runat="server" style="z-index: 1; left: 12px; top: 50px; position: absolute; bottom: 596px" Text="StaffId"></asp:Label>
         </p>
         <p>
