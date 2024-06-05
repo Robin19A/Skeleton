@@ -15,9 +15,9 @@ public partial class _1_List : System.Web.UI.Page
             DisplayProducts();
         }
 
-        /*clsProductAdmin AnAdmin = new clsProductAdmin();
-        AnAdmin = (clsProductAdmin)Session["AnAdmin"];
-        lblLoggedIn.Text = "Logged In as: " + AnAdmin.AdminName;*/
+        clsProductUser AnUser = new clsProductUser();
+        AnUser = (clsProductUser)Session["AnUser"];
+        Response.Write("Logged In as a : " + AnUser.Username);
     }
 
     void DisplayProducts()
