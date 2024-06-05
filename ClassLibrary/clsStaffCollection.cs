@@ -55,6 +55,8 @@ namespace ClassLibrary
         }
         //private data member for the list
         List<clsStaff> mStaffList = new List<clsStaff>();
+        //
+        clsStaff mThisStaff = new clsStaff(); 
 
         public List<clsStaff> StaffList
         {
@@ -80,6 +82,44 @@ namespace ClassLibrary
                 //we shall worry about this letter
             }
         }
-        public clsStaff ThisStaff { get; set; }
+        public clsStaff ThisStaff
+        {
+            get
+            {
+             return mThisStaff;
+            }
+            set
+            {
+                mThisStaff = value;
+            }
+        }
+
+        public int Add()
+        {
+           clsDataConnection DB = new clsDataConnection();
+
+           DB.AddParameter("@Name", mThisStaff.Name);
+           DB.AddParameter("@Email", mThisStaff.Email);
+           DB.AddParameter("@DateOfBirth", mThisStaff.DateOfBirth);
+           DB.AddParameter("@Gender", mThisStaff.Gender);
+           DB.AddParameter("@Address", mThisStaff.Address);
+           DB.AddParameter("Active", mThisStaff.Active);
+
+            return DB.Execute("sproc_tblStaff_Insert");
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StaffId", mThisStaff.StaffId);
+            DB.AddParameter("@Name", mThisStaff.Name);
+            DB.AddParameter("@Email", mThisStaff.Email);
+            DB.AddParameter("@DateOfBirth", mThisStaff.DateOfBirth);
+            DB.AddParameter("@Gender", mThisStaff.Gender);
+            DB.AddParameter("@Address", mThisStaff.Address);
+            DB.AddParameter("Active", mThisStaff.Active);
+
+             DB.Execute("sproc_tblStaff_Update");
+        }
     }
 }

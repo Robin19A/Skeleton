@@ -162,6 +162,8 @@ namespace ClassLibrary
 
             //create a temporary variable to store the date values
             DateTime DateTemp;
+
+            
             try
             {
                 //copy the dateOfBirth value to the DateTemp Variable
@@ -221,7 +223,7 @@ namespace ClassLibrary
             if (gender.Length > 50)
             {
                 //record the error
-                Error = Error + "The email must be less than 50 characters : ";
+                Error = Error + "The gendwer must be less than 50 characters : ";
             }
 
 
