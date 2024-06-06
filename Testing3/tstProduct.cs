@@ -564,7 +564,7 @@ namespace Testing3
 
             clsProduct AnProduct = new clsProduct();
             Boolean Found = false;
-            Int32 ProductID = 1;
+            Int32 ProductID = 3;
             Found = AnProduct.Find(ProductID);
             Assert.IsTrue(Found);
         }
@@ -574,9 +574,9 @@ namespace Testing3
             clsProduct AnProduct = new clsProduct();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ProductID = 2;
+            Int32 ProductID = 3;
             Found = AnProduct.Find(ProductID);
-            if (AnProduct.ProductID != 2)
+            if (AnProduct.ProductID != 3)
             {
                 OK = false;
             }
@@ -591,7 +591,7 @@ namespace Testing3
             clsProduct AnProduct = new clsProduct();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ProductID = 2;
+            Int32 ProductID = 3;
             Found = AnProduct.Find(ProductID);
             if (AnProduct.Name != "BROWN")
             {
@@ -608,7 +608,7 @@ namespace Testing3
             clsProduct AnProduct = new clsProduct();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ProductID = 2;
+            Int32 ProductID = 3;
             Found = AnProduct.Find(ProductID);
             if (AnProduct.Description != "SUNGLASSES")
             {
@@ -625,7 +625,7 @@ namespace Testing3
             clsProduct AnProduct = new clsProduct();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ProductID = 2;
+            Int32 ProductID = 3;
             Found = AnProduct.Find(ProductID);
             if (AnProduct.DateAdded != Convert.ToDateTime("13-03-2023"))
             {
@@ -642,7 +642,7 @@ namespace Testing3
             clsProduct AnProduct = new clsProduct();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ProductID = 2;
+            Int32 ProductID = 3;
             Found = AnProduct.Find(ProductID);
             if (AnProduct.UnitPrice != 12)
             {
@@ -659,7 +659,7 @@ namespace Testing3
             clsProduct AnProduct = new clsProduct();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ProductID = 2;
+            Int32 ProductID = 3;
             Found = AnProduct.Find(ProductID);
             if (AnProduct.SupplierID != 4)
             {
@@ -676,7 +676,7 @@ namespace Testing3
             clsProduct AnProduct = new clsProduct();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ProductID = 2;
+            Int32 ProductID = 3;
             Found = AnProduct.Find(ProductID);
             if (AnProduct.Available != true)
             {
