@@ -19,31 +19,53 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
-    {
 
-        //create a new instance of clsOrder
+    {
+        //create a new instance of clAddress 
         clsOrder AnOrder = new clsOrder();
-        //capture the Order Id
-        AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
-        //capture the Customer Id
-        AnOrder.CustomerId = Convert.ToInt32(txtCustomerId.Text);
-        //capture the Order Date
-        AnOrder.OrderDate = Convert.ToDateTime(DateTime.Now);
-        //capture the Delivered Status
-        AnOrder.TotalAmount = Decimal.Parse(txtTotalAmount.Text);
-        //capture the Shipping Address
-        AnOrder.ShippingAddress = txtShippingAddress.Text;
-        //capture the Staff Id
-        AnOrder.StaffId = Convert.ToInt32(txtStaffId.Text);
-        //capture the Delivered Status
-        AnOrder.DeliveryStatus = chkDeliveryStatus.Checked;
-        //store the address in the session object
-        Session["AnOrder"] = AnOrder;
-        //navigate to the view page
-        Response.Redirect("OrderViewer.aspx");
+        //capture the house no 
+        string CustomerId = txtCustomerId.Text;
+        //capture the street 
+        string TotalAmount = txtTotalAmount.Text;
+        //capture the Town 
+        string ShippingAddress = txtShippingAddress.Text;
+        //capture the Post Code 
+        string StaffId = txtStaffId.Text;
+        //capture the Date Added 
+        string OrderDate = txtOrderDate.Text;
+        //capture Active check box 
+        string DeliveryStatus = chkDeliveryStatus.Text;
+        //variable to store any error messages 
+        string Error = "";
+        //validate the data 
+        Error = AnOrder.Valid(TotalAmount.ToString(), ShippingAddress, OrderDate);
+        if (Error == "")
+        {
+            //capture the house no 
+            AnOrder.CustomerId = Convert.ToInt32(txtCustomerId.Text);
+            //capture the street 
+            AnOrder.TotalAmount = Decimal.Parse(txtTotalAmount.Text);
+            //capture the town 
+            AnOrder.ShippingAddress = ShippingAddress;
+            //capture the post code 
+            AnOrder.StaffId = Convert.ToInt32(txtStaffId.Text);
+            //capture the date added 
+            AnOrder.OrderDate = Convert.ToDateTime(OrderDate);
+            //store the order in the session object 
+            Session["AnOrder"] = AnOrder;
+            //navigate to the view page 
+            Response.Redirect("OrderViewer.aspx");
+        }
+        else
+        {
+            //display error message
+            lblError.Text = Error;
+        }
     }
 
-    protected void btnCancel_Click(object sender, EventArgs e)
+
+
+        protected void btnCancel_Click(object sender, EventArgs e)
     {
 
     }
@@ -73,3 +95,4 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 }
+
