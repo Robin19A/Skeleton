@@ -417,7 +417,7 @@ namespace Testing4
             //set the DateAdded to a non date value
             string OrderDate = "this is not a date!";
             //invoke the method
-            Error = AnOrder.Valid(OrderDate, TotalAmount, ShippingAddress);
+            Error = AnOrder.Valid(OrderDate, TotalAmount, ShippingAddress
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
