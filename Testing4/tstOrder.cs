@@ -8,24 +8,21 @@ namespace Testing4
 {
     [TestClass]
     public class tstOrder
-    {
-
+    { 
         //good test data
         //create some test data to pass the method
-        string CustomerId = "4000";
         string OrderDate = DateTime.Now.ToShortDateString();
         string TotalAmount = "30";
         string ShippingAddress = "Gateway House, Leicester, LE1 9BH";
-        string StaffId = "1004";
 
         /******************INSTANCE OF THE CLASS TEST******************/
         [TestMethod]
         public void InstanceOK()
         {
             //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
+            clsOrder AnOrders = new clsOrder();
             //test to see that it exists
-            Assert.IsNotNull(AnOrder);
+            Assert.IsNotNull(AnOrders);
         }
 
         /******************PROPERTY OK TESTS******************/
