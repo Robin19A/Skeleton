@@ -153,5 +153,55 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string orderDate, string totalAmount, string shippingAddress)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to storethe data values
+            DateTime DateTemp;
+            //if the HouseNo is blank
+            if (ShippingAddress.Length == 0)
+            {
+                //redord the error
+                Error = Error + "The ShippingAddress may not be blank : ";
+
+            }
+            //if the HouseNo is no greater than 50
+            if (ShippingAddress.Length > 50)
+            {
+                //redord the error
+                Error = Error + "The ShippingAddress must be less than 51 charachters : ";
+
+            }
+
+            //create an instance of DateTime to compare with DateTemp
+            //in the if statement
+            DateTime DateComp = DateTime.Now.Date;
+            try
+            {
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(OrderDate);
+
+                if (DateTemp < DateComp) //compare orderDate with Date
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp < DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //return the error 
+                Error = Error + "The date was not a valid date : ";
+            }
+        }
+
     }
-}
+} 
+
