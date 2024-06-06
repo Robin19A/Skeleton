@@ -23,13 +23,13 @@ public partial class _1_List : System.Web.UI.Page
             //create an instance of the Address collection
             clsOrderCollection Orders = new clsOrderCollection();
             //set the data source to list of Orders in the collection
-            1stOrderList.DataSource = Orders.OrderList;
+            //lstOrderList.DataSource = Orders.OrderList;
             // set the name of the primary key
-            1stOrderList.DataValueField = "OrderNo";
+            //lstOrderList.DataValueField = "OrderNo";
             // set the data field to display
-            1stOrderList.DataTextField = "PostCode";
+            //lstOrderList.DataTextField = "PostCode";
             //bind the data to the list IstAddressList.DataBind();
-            1stOrderList.DataBind();
+            //lstOrderList.DataBind();
 
     }
 }

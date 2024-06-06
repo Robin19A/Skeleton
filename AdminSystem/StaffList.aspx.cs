@@ -15,6 +15,13 @@ public partial class _1_List : System.Web.UI.Page
         {
             DisplayStaffes();
         }
+
+        //create a new instance of clsStaffUser
+        clsStaffUser AnUser = new clsStaffUser();
+        //get data from the session object
+        AnUser = (clsStaffUser)Session["AnUser"];
+        //display the user name
+        Response.Write("logged in as: " + AnUser.Username);
     }
     void DisplayStaffes()
     {
@@ -106,6 +113,11 @@ public partial class _1_List : System.Web.UI.Page
         lstStaffList.DataTextField = "Address";
         //bind the data to the list
         lstStaffList.DataBind();
+    }
+
+    protected void btnReturntoMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
 

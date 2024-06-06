@@ -22,7 +22,7 @@
             &nbsp;</p>
         <p>
             <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" style="z-index: 1; left: 141px; top: 216px; position: absolute" Text="Login" />
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 218px; top: 215px; position: absolute" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 218px; top: 215px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
         </p>
         <asp:Label ID="lblUsername" runat="server" style="z-index: 1; left: 46px; top: 116px; position: absolute" Text="Username:"></asp:Label>
         <asp:Label ID="lblPassword" runat="server" style="z-index: 1; left: 48px; top: 158px; position: absolute" Text="Password"></asp:Label>

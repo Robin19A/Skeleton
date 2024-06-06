@@ -28,6 +28,8 @@ public partial class StaffLogin : System.Web.UI.Page
         Password = Convert.ToString(txtPassword.Text);
         //find the record
         Found = AnUser.FindUser(Username, Password);
+        //Add a session to capture the user name
+        Session["AnUser"] = AnUser;
         //if  username and/or password is empty
         if (txtUsername.Text == "")
         {
@@ -48,5 +50,10 @@ public partial class StaffLogin : System.Web.UI.Page
         }
 
 
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
