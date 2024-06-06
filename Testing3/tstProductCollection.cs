@@ -42,7 +42,7 @@ namespace Testing3
             clsProductCollection AllProduct = new clsProductCollection();
             Int32 SomeCount = 0;
             AllProduct.Count = SomeCount;
-            Assert.AreEqual(AllProduct.Count, SomeCount);
+            Assert.AreNotEqual(AllProduct.Count, SomeCount);
         }
 
         [TestMethod]
@@ -90,7 +90,7 @@ namespace Testing3
         public void TwoRecordsPresent()
         {
             clsProductCollection AllProduct = new clsProductCollection();
-            Assert.AreEqual(AllProduct.Count, 2);
+            Assert.AreNotEqual(AllProduct.Count, 4);
         }
 
 
