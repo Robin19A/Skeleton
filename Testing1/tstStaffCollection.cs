@@ -200,5 +200,62 @@ namespace Testing1
             //test to see that the record was not found
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+
+        public void ReportByAddressMethodOK()
+        {
+            //create an imstance of the class containing unfiltered results
+            clsStaffCollection AllStaffes = new clsStaffCollection();
+            //create an instance of the filtered data
+            clsStaffCollection FilteredStaffes = new clsStaffCollection();
+            //apply a blank string (should return all records)
+            FilteredStaffes.ReportByAddress("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllStaffes.Count, FilteredStaffes.Count);
+        }
+
+        [TestMethod]
+        public void ReportByAddressNoneFound()
+        {
+            //create an instance of the class we want to create
+            clsStaffCollection FilteredStaffes = new clsStaffCollection();
+            //apply a post code that does not exist
+            FilteredStaffes.ReportByAddress("xxx xxx");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredStaffes.Count);
+        }
+
+        [TestMethod]
+        public void ReportByAddressTestDataFound()
+        {
+            //create an instance of the filtered data
+            clsStaffCollection FilteredStaffes = new clsStaffCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply a post code that does not exist
+            FilteredStaffes.ReportByAddress("yyy yyy");
+            //check that the correct number of records are found
+            if (FilteredStaffes.Count == 2)
+            {
+                //check to see that the first record is 25
+                if (FilteredStaffes.StaffList[0].StaffId !=25)
+                {
+                    OK = false;
+                }
+                //check to see that the first record is 26
+                if (FilteredStaffes.StaffList[1].StaffId != 26)
+                {
+                    OK = false;
+                }
+            else
+                {
+                    OK = false;
+                }
+                //test to see that there are no records
+                Assert.IsTrue(OK);
+            }
+
+        }
     }
 }
