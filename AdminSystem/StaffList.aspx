@@ -5,8 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        #form1 {
+            height: 634px;
+        }
+    </style>
 </head>
-<body>
+<body style="height: 633px">
     <form id="form1" runat="server">
         <div>
         </div>
@@ -23,6 +28,7 @@
         <p>
             <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 9px; top: 569px; position: absolute" Text="Apply Filter" />
             <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="z-index: 1; left: 174px; top: 570px; position: absolute" Text="Clear Filter" />
+            <asp:Button ID="btnReturntoMainMenu" runat="server" OnClick="btnReturntoMainMenu_Click" style="z-index: 1; left: 345px; top: 574px; position: absolute; width: 143px" Text="Return to Main Menu" />
         </p>
         <p>
             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 20px; top: 611px; position: absolute" Text="lblError"></asp:Label>
