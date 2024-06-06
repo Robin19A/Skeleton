@@ -383,7 +383,7 @@ namespace Testing4
             //invoke the method
             Error = AnOrder.Valid(OrderDate, TotalAmount, ShippingAddress);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -398,7 +398,7 @@ namespace Testing4
             //set the date totodays date
             TestDate = DateTime.Now.Date;
             //change the date to whatever the date is plus 100 years
-            TestDate = TestDate.AddYears(100);
+            TestDate = TestDate.AddYears(100).AddDays(1);
             //convert the date variable to a string variable
             string OrderDate = TestDate.ToString();
             //invoke the method
@@ -417,7 +417,7 @@ namespace Testing4
             //set the DateAdded to a non date value
             string OrderDate = "this is not a date!";
             //invoke the method
-            Error = AnOrder.Valid(OrderDate, TotalAmount, ShippingAddress
+            Error = AnOrder.Valid(OrderDate, TotalAmount, ShippingAddress);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -507,7 +507,7 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string ShippingAddress = "aaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
+            ShippingAddress = ShippingAddress.PadRight(25, 'a'); //this should fail            
             //invoke the method
             Error = AnOrder.Valid(OrderDate, TotalAmount, ShippingAddress);
             //test to see that the result is correct
@@ -542,6 +542,126 @@ namespace Testing4
             ShippingAddress = ShippingAddress.PadRight(500, 'a'); //this should fail
             //invoke the method
             Error = AnOrder.Valid(OrderDate, TotalAmount, ShippingAddress);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountExtremeMin()
+        {
+            //create an instance of the class we want to cre:
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            Decimal TotalAmount = (Decimal)(-1000000);
+            //invoke the method
+            Error = AnOrder.Valid(OrderDate, TotalAmount.ToString(), ShippingAddress);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountMinPlusOne()
+        {
+            //create an instance of the class we want to cre:
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            Decimal TotalAmount = (Decimal)0.01;
+            //invoke the method
+            Error = AnOrder.Valid(OrderDate, TotalAmount.ToString(), ShippingAddress);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountMin()
+        {
+            //create an instance of the class we want to cre:
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            Decimal TotalAmount = (Decimal)0.00;
+            //invoke the method
+            Error = AnOrder.Valid(OrderDate, TotalAmount.ToString(), ShippingAddress);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountMinLessOne()
+        {
+            //create an instance of the class we want to cre:
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            Decimal TotalAmount = (Decimal) (-0.01);
+            //invoke the method
+            Error = AnOrder.Valid(OrderDate, TotalAmount.ToString(), ShippingAddress);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountMax()
+        {
+            //create an instance of the class we want to cre:
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            Decimal TotalAmount = (Decimal)1000;
+            //invoke the method
+            Error = AnOrder.Valid(OrderDate, TotalAmount.ToString(), ShippingAddress);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountMaxPlusOne()
+        {
+            //create an instance of the class we want to cre:
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            Decimal TotalAmount = (Decimal)1001;
+            //invoke the method
+            Error = AnOrder.Valid(OrderDate, TotalAmount.ToString(), ShippingAddress);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountMid()
+        {
+            //create an instance of the class we want to cre:
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            Decimal TotalAmount = (Decimal)500;
+            //invoke the method
+            Error = AnOrder.Valid(OrderDate, TotalAmount.ToString(), ShippingAddress);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalAmountExtremeMax()
+        {
+            //create an instance of the class we want to cre:
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            Decimal TotalAmount = (Decimal)1000000;
+            //invoke the method
+            Error = AnOrder.Valid(OrderDate, TotalAmount.ToString(), ShippingAddress);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
