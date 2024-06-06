@@ -564,7 +564,7 @@ namespace Testing3
 
             clsProduct AnProduct = new clsProduct();
             Boolean Found = false;
-            Int32 ProductID = 1;
+            Int32 ProductID = 3;
             Found = AnProduct.Find(ProductID);
             Assert.IsTrue(Found);
         }
