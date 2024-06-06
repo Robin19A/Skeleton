@@ -160,15 +160,19 @@ namespace ClassLibrary
             String Error = "";
             //create a temporary variable to storethe data values
             DateTime DateTemp;
+            //create a temporary variable to storethe data values
+
+            
+
             //if the HouseNo is blank
-            if (ShippingAddress.Length == 0)
+            if (shippingAddress.Length == 0)
             {
                 //redord the error
                 Error = Error + "The ShippingAddress may not be blank : ";
 
             }
             //if the HouseNo is no greater than 50
-            if (ShippingAddress.Length > 50)
+            if (shippingAddress.Length > 50)
             {
                 //redord the error
                 Error = Error + "The ShippingAddress must be less than 51 charachters : ";
@@ -178,10 +182,11 @@ namespace ClassLibrary
             //create an instance of DateTime to compare with DateTemp
             //in the if statement
             DateTime DateComp = DateTime.Now.Date;
+            DateTime FutureDate = DateTime.Today.AddYears(100);
             try
             {
                 //copy the dateAdded value to the DateTemp variable
-                DateTemp = Convert.ToDateTime(OrderDate);
+                DateTemp = Convert.ToDateTime(orderDate);
 
                 if (DateTemp < DateComp) //compare orderDate with Date
                 {
@@ -189,7 +194,7 @@ namespace ClassLibrary
                     Error = Error + "The date cannot be in the past : ";
                 }
                 //check to see if the date is greater than today's date
-                if (DateTemp < DateComp)
+                if (DateTemp > FutureDate)
                 {
                     //record the error
                     Error = Error + "The date cannot be in the future : ";
@@ -200,8 +205,21 @@ namespace ClassLibrary
                 //return the error 
                 Error = Error + "The date was not a valid date : ";
             }
-        }
 
+            //temporary if statment
+            if (Convert.ToDecimal(totalAmount) < (Decimal)(0))
+            {
+                //record the error
+                Error = Error + "THe total price has to cannot be more than 1000: ";
+            }
+            //temporary if statment
+            if (Convert.ToDecimal( totalAmount) > (Decimal) (1000))
+            {
+                //record the error
+                Error = Error + "THe total price has to cannot be more than 1000: ";
+            }
+            return Error;
+        }
     }
 } 
 
