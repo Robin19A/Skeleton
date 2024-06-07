@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Messaging;
 
 namespace ClassLibrary
@@ -37,11 +38,12 @@ namespace ClassLibrary
                 //point at the next record 
                 Index++;
             }
-            
+
         }
         //private data member for the list
         List<clsSupplier> mSupplierList = new List<clsSupplier>();
-
+        //private member data for ThisSupplier 
+        clsSupplier mThisSupplier = new clsSupplier();
         //public property for SupplierList
         public List<clsSupplier> SupplierList
         {
@@ -70,8 +72,38 @@ namespace ClassLibrary
                 //we will worry about this later
             }
         }
+        //public property for this supplier 
+        public clsSupplier ThisSupplier
+        {
+            get
+            {
+                //return the private data
+                return mThisSupplier;
+            }
+            set
+            {
+                //set the private data
+                mThisSupplier = value;
+            }
 
-        public clsSupplier ThisSupplier { get; set; }
+        }
+
+        public int Add()
+        {
+            //adds a record to the database based on the values of mThisSupplier
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure 
+            DB.AddParameter("@SupplierName", mThisSupplier.SupplierName);
+            DB.AddParameter("@Address", mThisSupplier.Address);
+            DB.AddParameter("@Phone", mThisSupplier.Phone);
+            DB.AddParameter("@Email", mThisSupplier.Email);
+            DB.AddParameter("@DateAdded", mThisSupplier.DateAdded);
+            DB.AddParameter("@Active", mThisSupplier.Active);
+
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblSupplier_Insert");
+        }
     }
 }
 

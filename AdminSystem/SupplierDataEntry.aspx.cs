@@ -42,19 +42,23 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture the SupplierName  
             AnSupplier.SupplierName = txtSupplierName.Text;
             //capture the SupplierId
-            AnSupplier.SupplierId = Convert.ToInt32(txtSupplierId.Text);
+            AnSupplier.SupplierId = Convert.ToInt32(SupplierId);
             //capture the Phone
             AnSupplier.Phone = txtPhone.Text;
             //capture the Email
             AnSupplier.Email = txtEmail.Text;
             //capture the Date Added
-            AnSupplier.DateAdded = Convert.ToDateTime(DateTime.Now);
+            AnSupplier.DateAdded = Convert.ToDateTime(DateAdded);
             //capture the Active
             AnSupplier.Active = chkActive.Checked;
-            //store the address in the session object
-            Session["AnSupplier"] = AnSupplier;
-            //navigate to the view page 
-            Response.Redirect("SupplierViewer.aspx");
+            //create a new instance of supplier collection
+            clsSupplierCollection SupplierList = new clsSupplierCollection();
+            //set the this supplier property
+            SupplierList.ThisSupplier = AnSupplier;
+            //add the new record
+            SupplierList.Add();
+            //redirect back to list page
+            Response.Redirect("SupplierList.aspx");
         }
         else
         {
