@@ -104,6 +104,17 @@ namespace ClassLibrary
             //execute the query returning the primary key value
             return DB.Execute("sproc_tblSupplier_Insert");
         }
+
+        public void Delete()
+        {
+            //deletes the record pointed to by thisSupplier
+            //connects to the database 
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure 
+            DB.AddParameter("@SupplierId", mThisSupplier.SupplierId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblSupplier_Delete");
+        }
     }
 }
 

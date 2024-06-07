@@ -10,6 +10,13 @@
     <form id="form1" runat="server">
         <div>
         </div>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Label ID="lblQuestion" runat="server" Text="Are you sure you want to delete this record?"></asp:Label>
+        </p>
+        <asp:Button ID="btnYes" runat="server" OnClick="btnYes_Click" Text="Yes" Width="82px" />
+        <asp:Button ID="btnNo" runat="server" OnClick="btnNo_Click" style="margin-left: 45px" Text="No" Width="72px" />
     </form>
 </body>
 </html>
