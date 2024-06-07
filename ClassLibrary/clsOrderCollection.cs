@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -9,6 +10,8 @@ namespace ClassLibrary
     {
         //private data member for the list
         List<clsOrder> mOrderList = new List<clsOrder>();
+        //private member for thisOrder
+        clsOrder mThisOrder = new clsOrder();
 
         //constructor for the class
         public clsOrderCollection()
@@ -73,6 +76,58 @@ namespace ClassLibrary
             }
         }
 
-        public clsOrder ThisOrder { get; set; }
+        //public property for ThisAddress
+        public clsOrder ThisOrder
+        {
+            get
+            {
+                //return the private data
+                return mThisOrder;
+            }
+            set
+            {
+                //set the private data
+                mThisOrder = value;
+            }
+        }
+
+        public int Add()
+        {
+            //adds a record to the database based on the values of mOrder
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
+            DB.AddParameter("@OrderDate", mThisOrder.OrderDate);
+            DB.AddParameter("@TotalAmount", mThisOrder.TotalAmount);
+            DB.AddParameter("@ShippingAddress", mThisOrder.ShippingAddress);
+            DB.AddParameter("@StaffId", mThisOrder.StaffId);
+            DB.AddParameter("@DeliveryStatus", mThisOrder.DeliveryStatus);
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblOrder_Insert");
+        }
+
+        public void Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            //adds a record to the database based on the values of mOrder
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@OrderId", mThisOrder.OrderId);
+            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
+            DB.AddParameter("@OrderDate", mThisOrder.OrderDate);
+            DB.AddParameter("@TotalAmount", mThisOrder.TotalAmount);
+            DB.AddParameter("@ShippingAddress", mThisOrder.ShippingAddress);
+            DB.AddParameter("@StaffId", mThisOrder.StaffId);
+            DB.AddParameter("@DeliveryStatus", mThisOrder.DeliveryStatus);
+            //execute the query returning the primary key value
+            DB.Execute("sproc_tblOrder_Update");
+        }
     }
 }
+
