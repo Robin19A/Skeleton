@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace ClassLibrary
 {
@@ -156,6 +157,95 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string supplierName, string address, string phone, string email, string dateAdded)
+        {
+            //create a string variable to store the error 
+            String Error = "";
+            //create a temporary variable to store the date values 
+            DateTime DateTemp;
+            //if the SupplierName is blank 
+            if (supplierName.Length == 0)
+            {
+                //record the error 
+                Error = Error + "The supplier name may not be blank :";
+            }
+            //if the supplier name is greater that 30 characters 
+            if (supplierName.Length > 30)
+            {
+                //record the error
+                Error = Error + "The supplier name must be less than 30 characters : ";
+            }
+            //create an instance of DateTime to compare with DateTemp
+            //in the if statements
+            DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+                //copy the dateAdded value to the DateTemp variable 
+                DateTemp = Convert.ToDateTime(dateAdded);
+
+                if (DateTemp < DateComp) //compare dateAdded with Date
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            //is the Addres blank 
+            if (address.Length == 0)
+            {
+                //record the error 
+                Error = Error + "The address may not be blank : ";
+            }
+
+            //if the Address is too long 
+            if (address.Length > 30)
+            {
+                //record the error 
+                Error = Error + "The address must be less than 30 characters : ";
+            }
+
+            //is the Phone blank 
+            if (phone.Length == 0)
+            {
+                //record the error 
+                Error = Error + "The phone may not be blank : ";
+            }
+            //if the Phone is too long 
+            if (phone.Length > 20)
+            {
+                //record the error 
+                Error = Error + "The phone must be less than 20 characters : ";
+            }
+
+            //is the Email blank 
+            if (email.Length == 0)
+            {
+                //record the error 
+                Error = Error + "The email may not be blank : ";
+            }
+            //if the Email is too long 
+            if (email.Length > 30)
+            {
+                //record the error 
+                Error = Error + "The email must be less than 30 characters : ";
+            }
+            //return any error messages
+            return Error;
+        }
     }
 }
+
     
