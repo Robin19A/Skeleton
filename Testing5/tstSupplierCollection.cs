@@ -153,6 +153,38 @@ namespace Testing5
             //test to see that the two values are the same 
             Assert.AreEqual(AllSuppliers.ThisSupplier, TestItem);
         }
+
+        //[TestMethod] ------------------------------> ATTEMPTED BUT DOES NOT WORK
+
+        //public void DeleteMethodOK() 
+        //{
+        //    //create an instance of of the class we want create 
+        //    clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+        //    //create the item of test data
+        //    clsSupplier TestItem = new clsSupplier();
+        //    //variable to store the primary key 
+        //    Int32 PrimaryKey = 0;
+        //    TestItem.Active = true;
+        //    TestItem.SupplierId = 1;
+        //    TestItem.SupplierName = "Shadeless";
+        //    TestItem.Address = "Some address";
+        //    TestItem.Phone = "555-363-0000";
+        //    TestItem.Email = "Shadeless@gmail.com";
+        //    TestItem.DateAdded = DateTime.Now;
+        //    //set this supplier to the test data
+        //    AllSuppliers.ThisSupplier = TestItem;
+        //    //add the record
+        //    PrimaryKey = AllSuppliers.Add();
+        //    //set the primary key of test data
+        //    //TestItem.SupplierId.Find(PrimaryKey);
+        //    AllSuppliers.Delete();
+        //    //now find the record
+        //    Boolean Found = AllSuppliers.ThisSupplier.Find(PrimaryKey);
+        //    //test to see that record was not found
+        //    Assert.IsFalse(Found);
+            
+        //}
+
     }
 }
 

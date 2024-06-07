@@ -41,4 +41,30 @@ public partial class _1_List : System.Web.UI.Page
         //redirect to the data entry page
         Response.Redirect("SupplierDataEntry.aspx");
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be deleted
+        Int32 SupplierId;
+        //if a record has been selected from the list
+        if (lstSupplierList.SelectedIndex != -1)
+        {
+            //get the primary key value of the recrod delete
+            SupplierId = Convert.ToInt32(lstSupplierList.SelectedValue);
+            //store the data in the session object
+            Session["SupplierId"] = SupplierId;
+            //redirect to the delete page 
+            Response.Redirect("SupplierConfirmDelete.aspx");
+        }
+        else //if no record has been selected
+        {
+            //display an error message
+            lblError.Text = "Please select a record from the list to delete";
+        }
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+
+    }
 }
