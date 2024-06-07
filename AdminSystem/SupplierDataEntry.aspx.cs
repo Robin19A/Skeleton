@@ -17,28 +17,56 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsSupplier
         clsSupplier AnSupplier = new clsSupplier();
-        //capture the address
-        AnSupplier.Address = txtAddress.Text;
-        //capture the SupplierName  
-        AnSupplier.SupplierName = txtSupplierName.Text;
-        //capture the SupplierId
-        AnSupplier.SupplierId = Convert.ToInt32(txtSupplierId.Text);
+        //capture the supplier Id
+        string SupplierId = txtSupplierId.Text;
+        //capture the supplierName
+        string SupplierName = txtSupplierName.Text;
+        //capture the Address
+        string Address = txtAddress.Text;
         //capture the Phone
-        AnSupplier.Phone = txtPhone.Text;
-        //capture the Email
-        AnSupplier.Email = txtEmail.Text;
-        //capture the Date Added
-        AnSupplier.DateAdded = Convert.ToDateTime(DateTime.Now);
-        //capture the Active
-        AnSupplier.Active = chkActive.Checked;
-        //store the address in the session object
-        Session["AnSupplier"] = AnSupplier;
-        //navigate to the view page 
-        Response.Redirect("SupplierViewer.aspx");
-
+        string Phone = txtPhone.Text;
+        //capture the supplier Id
+        string Email = txtEmail.Text;
+        //capture the supplier Id
+        string DateAdded = txtDateAdded.Text;
+        //capture the Active checkbox
+        string Active = chkActive.Text;
+        //variable to store any error messages 
+        string Error = "";
+        //validate the data 
+        Error = AnSupplier.Valid(SupplierName, Address, Phone, Email, DateAdded);
+        if (Error == "")
+        {
+            //capture the address
+            AnSupplier.Address = txtAddress.Text;
+            //capture the SupplierName  
+            AnSupplier.SupplierName = txtSupplierName.Text;
+            //capture the SupplierId
+            AnSupplier.SupplierId = Convert.ToInt32(txtSupplierId.Text);
+            //capture the Phone
+            AnSupplier.Phone = txtPhone.Text;
+            //capture the Email
+            AnSupplier.Email = txtEmail.Text;
+            //capture the Date Added
+            AnSupplier.DateAdded = Convert.ToDateTime(DateTime.Now);
+            //capture the Active
+            AnSupplier.Active = chkActive.Checked;
+            //store the address in the session object
+            Session["AnSupplier"] = AnSupplier;
+            //navigate to the view page 
+            Response.Redirect("SupplierViewer.aspx");
+        }
+        else
+        {
+            //display the error message 
+            lblError.Text = Error;
+        }
     }
 
+
+
     protected void Button1_Click(object sender, EventArgs e)
+
     {
         //create an instance of the supplier class
         clsSupplier AnSupplier = new clsSupplier();
@@ -62,6 +90,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
             chkActive.Checked = AnSupplier.Active;
 
         }
-
     }
 }
+
+    
+
