@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
+using System.Runtime.ConstrainedExecution;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -9,6 +11,8 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    public int OrderId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -42,6 +46,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture the house no 
+            AnOrder.OrderId = OrderId;
+            //capture the house no 
             AnOrder.CustomerId = Convert.ToInt32(txtCustomerId.Text);
             //capture the street 
             AnOrder.TotalAmount = Decimal.Parse(txtTotalAmount.Text);
@@ -51,21 +57,41 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.StaffId = Convert.ToInt32(txtStaffId.Text);
             //capture the date added 
             AnOrder.OrderDate = Convert.ToDateTime(OrderDate);
-            //store the order in the session object 
-            Session["AnOrder"] = AnOrder;
-            //navigate to the view page 
-            Response.Redirect("OrderViewer.aspx");
+            //capture active
+            AnOrder.DeliveryStatus = chkDeliveryStatus.Checked;
+            //create new instance for Order collection 
+            clsOrderCollection OrderList = new clsOrderCollection();
+
+            //if this is a new record i.e. AddressId = -1 then add the data
+            if (OrderId == -1)
+            {
+                //set the ThisAddress property
+                OrderList.ThisOrder = AnOrder;
+                //add the new record
+                OrderList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                OrderList.ThisOrder.Find(OrderId);
+                //set the ThisAddress property
+                OrderList.ThisOrder = AnOrder;
+                //update the record
+                OrderList.Update();
+            }
+            //redirect back to the list page
+            Response.Redirect("OrderList.aspx");
         }
         else
         {
-            //display error message
+            //display the eror message
             lblError.Text = Error;
         }
     }
 
 
-
-        protected void btnCancel_Click(object sender, EventArgs e)
+    protected void btnCancel_Click(object sender, EventArgs e)
     {
 
     }
@@ -90,9 +116,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtOrderDate.Text = AnOrder.OrderDate.ToString();
             txtTotalAmount.Text = AnOrder.TotalAmount.ToString();
             txtShippingAddress.Text = AnOrder.ShippingAddress.ToString();
-            txtStaffId.Text = AnOrder.StaffId.ToString();   
+            txtStaffId.Text = AnOrder.StaffId.ToString();
             chkDeliveryStatus.Checked = AnOrder.DeliveryStatus;
         }
+    }
+
+    void DisplayOrder()
+    {
+        //create an instance of the address book
+        clsOrderCollection OrderBook = new clsOrderCollection();
+        //find the record to update
+        OrderBook.ThisOrder.Find(OrderId);
+        //display the data for the record
+        txtOrderId.Text = OrderBook.ThisOrder.OrderId.ToString();
+        txtCustomerId.Text = OrderBook.ThisOrder.CustomerId.ToString();
+        txtTotalAmount.Text = OrderBook.ThisOrder.TotalAmount.ToString();
+        txtShippingAddress.Text = OrderBook.ThisOrder.ShippingAddress.ToString();
+        txtStaffId.Text = OrderBook.ThisOrder.StaffId.ToString();
+        txtOrderDate.Text = OrderBook.ThisOrder.OrderDate.ToString();
+        chkDeliveryStatus.Checked = OrderBook.ThisOrder.DeliveryStatus;
     }
 }
 
