@@ -31,10 +31,13 @@
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 261px; position: absolute; height: 20px; width: 45px"></asp:Label>
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 13px; top: 304px; position: absolute; height: 30px; width: 40px" Text="OK" />
         <p>
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; top: 305px; position: absolute; width: 65px; height: 30px; right: 1010px; left: 79px" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; top: 305px; position: absolute; width: 65px; height: 30px; right: 1010px; left: 79px" Text="Cancel" OnClick="btnCancel_Click" />
         </p>
         <p>
             &nbsp;</p>
+        <p>
+            <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn_Click" style="z-index: 1; left: 181px; top: 306px; position: absolute; height: 29px; width: 171px" Text="Return to Main Menu" />
+        </p>
     </form>
 </body>
 </html>

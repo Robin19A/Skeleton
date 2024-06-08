@@ -19,6 +19,7 @@
         <p>
             <asp:Label ID="lblPhoneNumber" runat="server" height="22px" Text="Enter a Phone Number" width="142px"></asp:Label>
             <asp:TextBox ID="txtFilter" runat="server" Height="16px" OnTextChanged="txtFilter_TextChanged" style="margin-left: 25px" Width="159px"></asp:TextBox>
+            <asp:Button ID="btnReturn1" runat="server" OnClick="btnReturn1_Click" style="z-index: 1; left: 344px; top: 397px; position: absolute; width: 160px; height: 26px" Text="Return to Main Menu" />
         </p>
         <p>
             <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" Text="Apply Filter" />

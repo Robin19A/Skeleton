@@ -16,6 +16,13 @@ public partial class _1_List : System.Web.UI.Page
             // update the list box
             DisplaySuppliers();
         }
+
+        //create a new instance of clsSupplierUser
+        clsSupplierUser AnUser = new clsSupplierUser();
+        //get data from the session object
+        AnUser = (clsSupplierUser)Session["AnUser"];
+        //display the user name
+        Response.Write("Logged in as: " + AnUser.UserName);
     }
 
     void DisplaySuppliers()
@@ -126,6 +133,11 @@ public partial class _1_List : System.Web.UI.Page
     protected void txtFilter_TextChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnReturn1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
 
