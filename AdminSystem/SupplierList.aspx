@@ -10,12 +10,22 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:ListBox ID="lstSupplierList" runat="server" Height="254px" Width="261px"></asp:ListBox>
+        <asp:ListBox ID="lstSupplierList" runat="server" Height="254px" Width="261px" OnSelectedIndexChanged="lstSupplierList_SelectedIndexChanged"></asp:ListBox>
         <p>
             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
             <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" style="margin-left: 32px" Text="Edit" />
             <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="height: 26px; margin-left: 34px" Text="Delete" />
         </p>
+        <p>
+            <asp:Label ID="lblPhoneNumber" runat="server" height="22px" Text="Enter a Phone Number" width="142px"></asp:Label>
+            <asp:TextBox ID="txtFilter" runat="server" Height="16px" OnTextChanged="txtFilter_TextChanged" style="margin-left: 25px" Width="159px"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" Text="Apply Filter" />
+            <asp:Button ID="btnClearFilter" runat="server" Height="26px" OnClick="btnClearFilter_Click" style="margin-left: 68px" Text="Clear Filter" />
+        </p>
+        <p>
+            &nbsp;</p>
         <p>
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>

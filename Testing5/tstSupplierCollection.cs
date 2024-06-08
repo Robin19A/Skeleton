@@ -154,39 +154,99 @@ namespace Testing5
             Assert.AreEqual(AllSuppliers.ThisSupplier, TestItem);
         }
 
-        //[TestMethod] ------------------------------> ATTEMPTED BUT DOES NOT WORK
+        [TestMethod]
 
-        //public void DeleteMethodOK() 
-        //{
-        //    //create an instance of of the class we want create 
-        //    clsSupplierCollection AllSuppliers = new clsSupplierCollection();
-        //    //create the item of test data
-        //    clsSupplier TestItem = new clsSupplier();
-        //    //variable to store the primary key 
-        //    Int32 PrimaryKey = 0;
-        //    TestItem.Active = true;
-        //    TestItem.SupplierId = 1;
-        //    TestItem.SupplierName = "Shadeless";
-        //    TestItem.Address = "Some address";
-        //    TestItem.Phone = "555-363-0000";
-        //    TestItem.Email = "Shadeless@gmail.com";
-        //    TestItem.DateAdded = DateTime.Now;
-        //    //set this supplier to the test data
-        //    AllSuppliers.ThisSupplier = TestItem;
-        //    //add the record
-        //    PrimaryKey = AllSuppliers.Add();
-        //    //set the primary key of test data
-        //    //TestItem.SupplierId.Find(PrimaryKey);
-        //    AllSuppliers.Delete();
-        //    //now find the record
-        //    Boolean Found = AllSuppliers.ThisSupplier.Find(PrimaryKey);
-        //    //test to see that record was not found
-        //    Assert.IsFalse(Found);
-            
-        //}
+        public void DeleteMethodOK() 
+        {
+            //create an instance of of the class we want create 
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            //create the item of test data
+            clsSupplier TestItem = new clsSupplier();
+            //variable to store the primary key 
+            Int32 PrimaryKey = 0;
+            TestItem.Active = true;
+            TestItem.SupplierId = 1;
+            TestItem.SupplierName = "Shadeless";
+            TestItem.Address = "Some address";
+            TestItem.Phone = "555-363-0000";
+            TestItem.Email = "Shadeless@gmail.com";
+            TestItem.DateAdded = DateTime.Now;
+            //set this supplier to the test data
+            AllSuppliers.ThisSupplier = TestItem;
+            //add the record
+            PrimaryKey = AllSuppliers.Add();
+            //set the primary key of test data
+            //TestItem.SupplierId.Find(PrimaryKey);
+            AllSuppliers.Delete();
+            //now find the record
+            Boolean Found = AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            //test to see that record was not found
+            Assert.IsFalse(Found);
+
+        }
+
+        [TestMethod] 
+
+        public void ReportByPhone() 
+        {
+            //create an instance of the class containing unfiltered results
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            //create an instance of the filtered data 
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            //apply a blank string should return all records 
+            FilteredSuppliers.ReportByPhone("");
+            //test to see that two values are the same 
+            Assert.AreEqual(AllSuppliers.Count, FilteredSuppliers.Count);
+
+        }
+
+        [TestMethod] 
+
+        public void ReportByPhoneNoneFound() 
+        {
+            //create an instance of the class we want to create 
+            clsSupplierCollection FilteredSupppliers = new clsSupplierCollection();
+           //apply a phone number that doesnt exist
+            FilteredSupppliers.ReportByPhone("xxx-xxx-xxxx");
+            //test to see that there are no records 
+            Assert.AreEqual(0, FilteredSupppliers.Count);
+
+        }
+
+        [TestMethod] 
+        public void ReportByPhoneTestDataFound()
+        {
+            // Create an instance of the clsSupplierCollection
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            // Variable to store the outcome
+            Boolean OK = true;
+            // Call the ReportByPhone method with test data
+            FilteredSuppliers.ReportByPhone("yyy-yyy-yyyy");
+            // Check that the correct number of records are found
+            if (FilteredSuppliers.Count == 2)
+            {
+                // Check to see that the first record is 25
+                if (FilteredSuppliers.SupplierList[0].SupplierId != 25)
+                {
+                    OK = false;
+                }
+                // Check to see that the second record is 26
+                if (FilteredSuppliers.SupplierList[1].SupplierId != 26)
+                {
+                    OK = false;
+                }
+           }
+           else
+            {
+                OK = false;
+            }
+            // Test to see that the outcome is as expected
+            Assert.IsTrue(OK);
+        }
 
     }
 }
+
 
 
 
