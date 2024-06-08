@@ -32,7 +32,7 @@
             &nbsp;</p>
         <p>
             <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" style="margin-left: 120px" Text="Login" Width="49px" />
-            <asp:Button ID="btnCancel" runat="server" style="margin-left: 61px" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" style="margin-left: 61px" Text="Cancel" OnClick="btnCancel_Click" />
         </p>
     </form>
 </body>

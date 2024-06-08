@@ -56,4 +56,10 @@ public partial class SupplierLogin : System.Web.UI.Page
     {
 
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to the main menu
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }
